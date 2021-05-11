@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pagination {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a {
+    padding-left: 10px;
+    text-decoration: none;
+}
+
+.active {
+    background: green;
+    border-radius: 10px;
+    color: white;
+    /* text-align: center; */
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.parent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.imgbox {
+    min-width: 30%;
+}
+
+.imgbox h3 {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.imgbox img {
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.imgbox button {
+    display: block;
+    margin: 20px auto;
+}

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <style>
+        a {
+            display: none;
+        }
+        
+        #prev {
+            display: inline-block;
+        }
+        
+        #next {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        {% for tdata in data %}
+        <div class="imgbox">
+            <h3>{{tdata.title}}</h3>
+            <img src="{{tdata.img.url}}">
+            <button type="button">Buy Now</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <a href="/pageno=1" id="prev">Prev</a> {% for i in limit %} {% if forloop.counter == page %}
+        <a href="/pageno={{forloop.counter}}" class="active" id={{forloop.counter}}>{{forloop.counter}}</a> {% else %}
+        <a href="/pageno={{forloop.counter}}" class="inactive" id={{forloop.counter}}>{{forloop.counter}}</a> {% endif %} {% endfor %}
+        <a href="/pageno=1" id="next">Next</a>
+    </div>
+</body>
+
+<script>
+    _ALL = "{{limit}}"
+    count = 0;
+    for (var i = 0; i < _ALL.length; i++)
+        if (_ALL[i] == '0')
+            count += 1;
+    document.getElementById("next").addEventListener("click", function() {
+        var cur_pagn = parseInt(document.getElementsByClassName("active")[0].id);
+        if (cur_pagn + 1 <= 7) {
+            document.getElementById("next").href = "/pageno=" + (cur_pagn + 1);
+        }
+    });
+
+    document.getElementById("prev").addEventListener("click", function() {
+        var cur_pagn = parseInt(document.getElementsByClassName("active")[0].id);
+        if (cur_pagn - 1 > 0) {
+            document.getElementById("prev").href = "/pageno=" + (cur_pagn - 1);
+        }
+    });
+    try {
+        document.getElementById(parseInt(document.getElementsByClassName("active")[0].id) - 1).style.display = "inline-block";
+    } catch (err) {
+        console.log();
+    }
+
+    try {
+        document.getElementById(parseInt(document.getElementsByClassName("active")[0].id) - 2).style.display = "inline-block";
+    } catch (err) {
+        console.log();
+    }
+    try {
+        document.getElementById(parseInt(document.getElementsByClassName("active")[0].id)).style.display = "inline-block";
+    } catch (err) {
+        console.log();
+    }
+    try {
+        document.getElementById(parseInt(document.getElementsByClassName("active")[0].id) + 1).style.display = "inline-block";
+    } catch (err) {
+        console.log();
+    }
+    try {
+        document.getElementById(parseInt(document.getElementsByClassName("active")[0].id) + 2).style.display = "inline-block";
+    } catch (err) {
+        console.log();
+    }
+    try {
+        document.getElementById(parseInt(count)).style.display = "inline-block";
+    } catch (err) {
+        console.log();
+    }
+</script>
+
+<script src="{% static 'js/index.js' %}"></script>
+
+</html>
